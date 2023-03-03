@@ -1,0 +1,38 @@
+
+#ratedTable, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+#ratedTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 3px solid black;
+}
+#burger{
+    width: 20px;
+}
+
+.input {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.approved {
+    display: flex;
+    flex-direction: row;
+    /* width: 50%; */
+}
+.approvedP {
+    font-weight: 100;
+}
+
+#approvedInTen {
+    width: 50%;
+}
+#approvedByAll{
+    width: 50%;
+}
+
