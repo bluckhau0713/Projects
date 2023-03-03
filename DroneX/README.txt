@@ -1,0 +1,1 @@
+This is our WIP Capstone Project to have a drone listen to body gestures in order to be controlled.
