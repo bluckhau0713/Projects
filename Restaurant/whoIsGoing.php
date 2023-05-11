@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if($_SESSION['isLoggedIn'] == false)
+    {
+        header('Location: login.php');
+    }
     require 'templates//menu.php';
     require 'dataBase.php';
     $db = new Database();
@@ -29,5 +34,19 @@
         <button><img src="burger.jpg" id="burger"></button>
     </form>
 
+    <form action="restaurantDetails.php" method='post'>
+        <select name=restaurant_name>
+            <?php
+                //var_dump($db->join())
+    
+                $names = $db->getAllRestaurantNames();
+                foreach($names as $name)
+                {  
+                    echo '<option value ="' . $name['restaurant_name'] . '">' . $name['restaurant_name'] . '</option>';
+                }
+            ?>
+        </select>
+        <button>Submit for your details entered!</button>
+    </form>
 </body>
 </html>

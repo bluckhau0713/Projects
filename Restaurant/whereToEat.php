@@ -1,4 +1,10 @@
 <?php
+
+    session_start();
+    if($_SESSION['isLoggedIn'] == false)
+    {
+        header('Location: login.php');
+    }
     require 'dataBase.php';
     require 'restaurantOb.php';
     require 'templates//menu.php';

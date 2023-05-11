@@ -12,6 +12,8 @@
     <img src="burger.jpg" id="burger">
     <a href="interactions.php">Modify the database!</a>
     <a href="whoIsGoing.php">Determine where to eat!</a>
+    <a href="login.php">Login</a>
+    <a href="logout.php">Logout</a>
     <img src="burger.jpg" id="burger">
     <br>
 
