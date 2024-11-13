@@ -1,6 +1,6 @@
 
-$credential = (New-Object System.Management.Automation.PSCredential("secretUsername", (ConvertTo-SecureString "secretPassword" -AsPlainText -Force)))
-$tenantDomainName = 'secretTenant'
+$credential = (New-Object System.Management.Automation.PSCredential("user", (ConvertTo-SecureString "password" -AsPlainText -Force)))
+$tenantDomainName = 'tenet'
   
 
 Write-Verbose "Getting token"
@@ -14,11 +14,13 @@ $body = @{
 
 $connectGraph = Invoke-RestMethod -Uri "https://login.microsoftonline.com/$tenantDomainName/oauth2/v2.0/token" -Method POST -Body $body
 
-$token = $connectGraph.access_token
-
+$token = "Bearer $($connectGraph.access_token)"
 if ($token) {
     Write-Host "Bearer $($token)"
-    $header = @{ Authorization = "Bearer $($token)" }
+    $header = @{	
+    'Content-Type' = 'application/json'
+    Authorization = $token
+}
 
 } else {
     throw "Unable to obtain token"
@@ -26,7 +28,7 @@ if ($token) {
 $body = @{
     reportName = "Devices"
     format     = "csv"
-}
+} | ConvertTo-Json
 
 $result = Invoke-RestMethod -Headers $header -Uri "https://graph.microsoft.com/v1.0/deviceManagement/reports/exportJobs" -Body $body -Method Post
 
